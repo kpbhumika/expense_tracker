@@ -2,6 +2,7 @@ package com.expense_tracker.expense_tracker.model;
 
 import java.util.Set;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -9,6 +10,7 @@ import jakarta.persistence.Table;
 @Table(name="user")
 public class User {
 
+    @Id
     private String id;
     private String name;
     private String email;
