@@ -2,14 +2,16 @@ package com.expense_tracker.expense_tracker.model;
 
 import java.util.Set;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="user")
+@Table(name="`user`")
 public class User {
 
-    private String id;
+    @Id
+    private Long id;
     private String name;
     private String email;
 
@@ -19,18 +21,18 @@ public class User {
     public User() {
     }
 
-    public User(String id, String name, String email) {
+    public User(Long id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
 
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

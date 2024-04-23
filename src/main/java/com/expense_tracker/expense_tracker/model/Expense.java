@@ -1,6 +1,7 @@
 package com.expense_tracker.expense_tracker.model;
 
 import java.time.Instant;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -12,6 +13,7 @@ public class Expense {
 
     @Id
     private Long id;
+    @Column(name = "expense_date")
     private Instant expenseDate;
     private String description;
 
