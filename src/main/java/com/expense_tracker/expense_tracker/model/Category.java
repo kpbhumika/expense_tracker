@@ -7,7 +7,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="category")
+@Table(name = "category")
 public class Category {
 
     @Id
@@ -16,7 +16,6 @@ public class Category {
 
     @OneToMany
     private Set<Expense> expense;
-
 
     public Category() {
     }
@@ -52,12 +51,15 @@ public class Category {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
         Category category = (Category) o;
 
-        if (id != null ? !id.equals(category.id) : category.id != null) return false;
+        if (id != null ? !id.equals(category.id) : category.id != null)
+            return false;
         return name != null ? name.equals(category.name) : category.name == null;
     }
 }

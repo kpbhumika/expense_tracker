@@ -14,10 +14,9 @@ insert into category (id, name) values (2, 'Entertainment');
 insert into category (id, name) values (3, 'Utilities');
 
 -- Insert data into the expense table
--- Insert data into the expense table
-insert into expense (id, expense_date, description, category_id, user_id)
-values (1, '2019-06-17T12:00:00.000Z', 'Weekly Grocery Shopping', 1, 1);
-insert into expense (id, expense_date, description, category_id, user_id)
-values (2, '2019-06-18T20:00:00.000Z','Movie Night Out', 2, 2);
-insert into expense (id, expense_date, description, category_id, user_id)
-values (3, '2019-06-20T10:00:00.000Z', 'Electricity Bill', 3, 3);
+insert into expense (id, expense_date, description, category_id, user_id, amount)
+values (1, '2019-06-17T12:00:00.000Z', 'Weekly Grocery Shopping', 1, 1, 50);
+insert into expense (id, expense_date, description, category_id, user_id, amount)
+values (2, '2019-06-18T20:00:00.000Z','Movie Night Out', 2, 2, 30);
+insert into expense (id, expense_date, description, category_id, user_id, amount)
+values (3, '2019-06-20T10:00:00.000Z', 'Electricity Bill', 3, 3, 150);

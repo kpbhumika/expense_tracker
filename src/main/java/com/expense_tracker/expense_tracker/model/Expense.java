@@ -8,7 +8,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="expense")
+@Table(name = "expense")
 public class Expense {
 
     @Id
@@ -16,6 +16,7 @@ public class Expense {
     @Column(name = "expense_date")
     private Instant expenseDate;
     private String description;
+    private double amount;
 
     @ManyToOne
     private Category category;
@@ -26,10 +27,11 @@ public class Expense {
     public Expense() {
     }
 
-    public Expense(Long id, Instant expenseDate, String description) {
+    public Expense(Long id, Instant expenseDate, String description, double amount) {
         this.id = id;
         this.expenseDate = expenseDate;
         this.description = description;
+        this.amount = amount;
     }
 
     public Long getId() {
@@ -56,6 +58,14 @@ public class Expense {
         this.description = description;
     }
 
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
     public Category getCategory() {
         return category;
     }
@@ -78,18 +88,24 @@ public class Expense {
                 "id=" + id +
                 ", expenseDate=" + expenseDate +
                 ", description='" + description + '\'' +
+                ", amount=" + amount +
                 '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
         Expense expense = (Expense) o;
 
-        if (id != null ? !id.equals(expense.id) : expense.id != null) return false;
+        if (id != null ? !id.equals(expense.id) : expense.id != null)
+            return false;
         if (expenseDate != null ? !expenseDate.equals(expense.expenseDate) : expense.expenseDate != null)
+            return false;
+        if (Double.compare(expense.amount, amount) != 0)
             return false;
         return description != null ? description.equals(expense.description) : expense.description == null;
     }
