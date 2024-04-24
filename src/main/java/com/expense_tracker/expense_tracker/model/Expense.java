@@ -1,8 +1,10 @@
 package com.expense_tracker.expense_tracker.model;
 
-import java.time.Instant;
+import java.util.Date;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -12,9 +14,12 @@ import jakarta.persistence.Table;
 public class Expense {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "expense_date")
-    private Instant expenseDate;
+    private Date expenseDate;
+
     private String description;
     private double amount;
 
@@ -27,7 +32,7 @@ public class Expense {
     public Expense() {
     }
 
-    public Expense(Long id, Instant expenseDate, String description, double amount) {
+    public Expense(Long id, Date expenseDate, String description, double amount) {
         this.id = id;
         this.expenseDate = expenseDate;
         this.description = description;
@@ -42,11 +47,11 @@ public class Expense {
         this.id = id;
     }
 
-    public Instant getExpenseDate() {
+    public Date getExpenseDate() {
         return expenseDate;
     }
 
-    public void setExpenseDate(Instant expenseDate) {
+    public void setExpenseDate(Date expenseDate) {
         this.expenseDate = expenseDate;
     }
 
