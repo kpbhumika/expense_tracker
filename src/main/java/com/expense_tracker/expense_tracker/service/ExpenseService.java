@@ -4,7 +4,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -21,10 +20,9 @@ public class ExpenseService {
     }
 
     public List<Expense> getExpensesByUserId(Long userId) {
-        // TODO: Implement actual query
-        return expenseRepository.findAll();
+        return expenseRepository.findByUserId(userId);
     }
-    public static void saveStringToFile(String content, String filePath) throws IOException {
+    private static void saveStringToFile(String content, String filePath) throws IOException {
         File file = new File(filePath);
         FileWriter fileWriter = new FileWriter(file);
         BufferedWriter writer = new BufferedWriter(fileWriter);
@@ -33,8 +31,15 @@ public class ExpenseService {
       }
 
 
-    public void generateExpenseReport(Long userId, double totalExpenseAmount) throws IOException {
-        String reportString = "User: "+userId+" spent "+totalExpenseAmount;
+    public void generateExpenseReport(Long userId, List<Expense> expenses, double totalExpenseAmount) throws IOException {
+        String allExpenses = "";
+        for (int i = 0; i < expenses.size(); i++) {
+			Expense expense = expenses.get(i);
+            String categoryName = expense.getCategory().getName();
+            allExpenses += categoryName + "\t\t"  + "$" + expense.getAmount() + "\t\t"  + expense.getDescription() + "\n";
+		}
+
+        String reportString = allExpenses + "Total amount spent : " + "$" + totalExpenseAmount;
         saveStringToFile(reportString,reportFolder+"/report.txt");
     }
 }
