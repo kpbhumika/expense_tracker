@@ -1,6 +1,5 @@
 package com.expense_tracker.expense_tracker.repository;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
