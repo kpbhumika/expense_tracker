@@ -18,7 +18,7 @@ import com.expense_tracker.expense_tracker.model.Expense;
 public class ExpenseService {
 
     private final ExpenseRepository expenseRepository;
-    private final String reportFolder = "/Users/bhumikakp/JAVA"; // Folder to save the generated report
+    private final String reportFolder = "."; // Folder to save the generated report
 
     /**
      * Constructor for ExpenseService.
@@ -47,11 +47,16 @@ public class ExpenseService {
      * @throws IOException If an I/O error occurs while writing to the file.
      */
     public void saveStringToFile(String content, String filePath) throws IOException {
-        File file = new File(filePath);
-        FileWriter fileWriter = new FileWriter(file);
-        BufferedWriter writer = new BufferedWriter(fileWriter);
-        writer.write(content);
-        writer.close(); // Important to close the streams to release resources
+        try {
+            File file = new File(filePath);
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter writer = new BufferedWriter(fileWriter);
+            writer.write(content);
+            writer.close(); // Important to close the streams to release resources
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+            throw e; // Re-throw the exception to be handled by the caller
+        }
     }
 
     /**

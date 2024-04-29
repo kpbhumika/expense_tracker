@@ -22,6 +22,7 @@ import com.expense_tracker.expense_tracker.service.ExpenseService;
 @SpringBootTest
 public class ExpenseServiceTest {
 
+
     @Mock
     private ExpenseRepository expenseRepository;
 
@@ -70,9 +71,9 @@ public class ExpenseServiceTest {
         ExpenseService spyExpenseService = spy(expenseService);
         doNothing().when(spyExpenseService).saveStringToFile(anyString(), anyString());
 
-        spyExpenseService.generateExpenseReport(1L, expenseList, 50.0);
+        spyExpenseService.generateExpenseReport(1L, expenseList, 60.0);
 
         // Asserting if the method calls saveStringToFile with the correct content and file path
-        verify(spyExpenseService).saveStringToFile(contains("Total amount spent : $50.0"), eq( "/Users/bhumikakp/JAVA/report.txt"));
+        verify(spyExpenseService).saveStringToFile(contains("Total amount spent : $60.0"), eq( "./report.txt"));
     }
 }
